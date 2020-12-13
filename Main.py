@@ -19,3 +19,40 @@ data.shape
 data.head(3)
 
 
+data.shape
+data.head(3)
+data['Attrition_Flag'].head(2)
+
+data['Customer_Age'].unique()
+
+#.aggregate({'Customer_Age':np.max}).sort_values(by=['Customer_Age'], ascending=False)
+eduMask = data['Education_Level'] == 'High School'
+churners = data['Attrition_Flag'] == 'Attrited Customer'
+
+
+#Average age of all atrited customers and all existing customers
+data.groupby('Attrition_Flag')['Customer_Age'].aggregate({'Customer_Age':np.mean})
+#
+
+
+#Minimum age of all atrited customers and all existing customers
+data.groupby('Attrition_Flag')['Customer_Age'].aggregate({'Customer_Age':np.min})
+#
+
+
+#Maximum age of all atrited customers and all existing customers
+data.groupby('Attrition_Flag')['Customer_Age'].aggregate({'Customer_Age':np.max})
+#
+
+
+#Side note, cannot aggregate discrete values, but you can group by them~
+#Show median credit limit of Attrited Customers - (mask), for each card
+attrited = data['Attrition_Flag'] == 'Attrited Customer'
+data[attrited].groupby('Card_Category')['Credit_Limit'].aggregate({'Credit_Limit':np.median})
+#Cannot aggregate when chose column is 'Income_Category'.
+
+
+#Show median months on book of Attrited Customers - (mask), for each card
+data[attrited].groupby('Card_Category')['Months_on_book'].aggregate({'Months_on_book':np.median})
+#### Interesting. Most attrited customers, even almost regardless of card, all
+#### stay for an average of ~36
