@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import numpy
 import seaborn as sns
 
-bank = pd.read_csv('/home/guarinof/BankChurners.csv')
+bank = pd.read_csv('BankChurners.csv')
 
 '''
 We tried one-hot encoding, which transforms a discrete value column
@@ -91,7 +91,7 @@ plt.colorbar(label='month label', ticks=range(0,56, 4))
 plt.clim(0, 56)
 plt.xlabel('Predicted Values')
 plt.ylabel('True values')
-plt.savefig('yDoesNotEqualX:(.png', dpi=300)
+plt.savefig('Months_on_book scatter.png', dpi=300)
 
 '''
 Another visual
@@ -105,4 +105,6 @@ fig, ax = plt.subplots(figsize=(10,10))
 sns.heatmap(mat, square=True, annot=True, cbar=False, cmap='YlGnBu') #flag, YlGnBu, jet
 plt.xlabel('predicted value')
 plt.ylabel('true value');
-plt.savefig('high.png', dpi=300)
+plt.savefig('Months_on_book_Heatmap.png', dpi=300)
+
+
